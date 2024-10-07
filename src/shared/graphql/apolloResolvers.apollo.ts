@@ -39,7 +39,6 @@ export const apolloResolvers = {
       args: {
         where: { email: string; password: string; cart: any[]; points: number };
       },
-      ctx: any,
     ) => {
       console.log('args: ', args);
       const loginUser = await prisma.user.findUnique({
@@ -47,12 +46,13 @@ export const apolloResolvers = {
           email: args.where.email,
         },
       });
-      console.log();
+      console.log('loginUser: ', loginUser);
       if (loginUser) {
         const checkPassword = await bcrypt.compare(
           args.where.password,
           loginUser.password,
         );
+        console.log('check: ', checkPassword);
         if (!checkPassword) {
           return { message: 'Wrong password.' };
         }
@@ -76,6 +76,10 @@ export const apolloResolvers = {
           domain: 'localhost',
           expires: new Date(Date.now() + TOKEN_LIVE * 1000),
           httpOnly: true,
+        });
+        console.log('loginUser return: ', {
+          user: { ...loginUser },
+          token: accessToken,
         });
         return { user: { ...loginUser }, token: accessToken };
       }

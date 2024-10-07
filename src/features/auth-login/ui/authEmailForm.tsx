@@ -75,9 +75,9 @@ export function AuthEmailForm({
                 <div className="flex gap-2 mt-[15px] cursor-pointer">
                   <div className="w-[24px] h-[24px] border-black border-[2px]">
                     {form.getValues('logged') && (
-                      <div className="h-full bg-black flex items-center justify-center">
+                      <div className="h-full filter_white bg-black flex items-center justify-center">
                         <Image
-                          className="w-[16px] filter_white"
+                          className="w-[16px]"
                           src={checkMark}
                           alt="checkmark"
                         />
@@ -118,7 +118,7 @@ export function AuthEmailForm({
         />
         <Button
           intent={'secondary'}
-          className="mt-5 md:w-full"
+          className="max-w-[150px] mt-5 md:w-full md:max-w-full"
           disabled={!form?.formState?.isValid}
         >
           continue

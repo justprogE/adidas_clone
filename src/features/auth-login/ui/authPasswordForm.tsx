@@ -47,7 +47,9 @@ export function AuthPasswordForm({
           },
         },
       });
-      localStorage.setItem('access_token', user?.data?.createUser?.token ?? '');
+      if (user?.data?.createUser?.token) {
+        localStorage.setItem('access_token', user?.data?.createUser?.token);
+      }
       return setOpenAuth(false);
     } catch (e) {
       console.log(e);
@@ -74,7 +76,7 @@ export function AuthPasswordForm({
         />
         <Button
           intent={'secondary'}
-          className="mt-5 md:w-full"
+          className="max-w-[150px] mt-5 md:w-full md:max-w-full"
           disabled={!form?.formState?.isValid}
         >
           continue

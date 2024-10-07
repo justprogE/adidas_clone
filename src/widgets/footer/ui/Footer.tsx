@@ -1,10 +1,12 @@
 'use client'; // eslint-disable-line
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '@/features/session';
 import Button from '@/shared/ui/Button';
 import Mobile from './mobile';
 import Content from './content';
 
 export function Footer() {
+  const { setOpenAuth } = useContext(AuthContext);
   return (
     <footer className="mt-auto">
       <div className="hidden md:grid grid-cols-[1fr_1fr] p-[15px] bg-black">
@@ -21,7 +23,11 @@ export function Footer() {
           <span className="text-3xl uppercase font-neueBold tracking-[1.5px] text-center">
             join our adiclub & get 15% off
           </span>
-          <Button className="max-w-[220px]" intent={'secondary'}>
+          <Button
+            onClick={() => setOpenAuth(true)}
+            className="max-w-[220px]"
+            intent={'secondary'}
+          >
             sign up for free
           </Button>
         </div>

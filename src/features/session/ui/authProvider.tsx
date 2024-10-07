@@ -19,13 +19,11 @@ export function AuthProvider({
         {openAuth && (
           <Modal setOpen={setOpenAuth}>
             {localStorage.getItem('access_token') ? (
-              // <SideBar setOpen={setOpenAuth} />
               props.sideBar
             ) : (
               <div className="w-[450px] bg-white relative p-5 pr-0 pb-0 md:w-screen md:self-end self-center mx-auto">
                 <Close setOpen={setOpenAuth} />
                 <div className="w-full max-h-[80vh] overflow-y-scroll scroll_width">
-                  {/* <Auth setOpenAuth={setOpenAuth} /> */}
                   {props.auth}
                 </div>
               </div>

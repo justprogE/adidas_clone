@@ -6,11 +6,15 @@
     "dev": "next dev -p 3015",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start:server": "json-graphql-server db.js"
   },
   "dependencies": {
+    "@apollo/client": "^3.11.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "graphql": "^16.9.0",
+    "json-graphql-server": "^3.1.2",
     "next": "14.2.14",
     "react": "^18",
     "react-dom": "^18",

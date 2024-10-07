@@ -45,7 +45,7 @@ export function ProductCard({
             {product?.discount ? (
               <div>
                 <div className="font-hausBold text-sm flex gap-1">
-                  <p className="text-[var(--error)]">
+                  <p className="text-[var(--red)]">
                     $
                     {convertPrice(
                       product?.price,
@@ -61,7 +61,7 @@ export function ProductCard({
                 </div>
                 <div className="flex gap-1 text-xs">
                   <p className="line-through">${product?.price}</p>
-                  <p className="text-[var(--error)]">
+                  <p className="text-[var(--red)]">
                     -{product?.discount?.replace(/#/, '')}%
                   </p>
                   <p className="text-[var(--dark-gray)]">Original price</p>

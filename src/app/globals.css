@@ -66,4 +66,15 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  .filter_white > img {
+    filter: invert(94%) sepia(94%) saturate(3%) hue-rotate(204deg)
+      brightness(105%) contrast(100%);
+  }
+  .filter_black > img {
+    filter: invert(0%) sepia(5%) saturate(18%) hue-rotate(162deg)
+      brightness(109%) contrast(105%);
+  }
+  button:focus {
+    outline: none;
+  }
 }

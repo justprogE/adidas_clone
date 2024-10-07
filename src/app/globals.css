@@ -77,4 +77,9 @@ body {
   button:focus {
     outline: none;
   }
+  .nav_underline {
+    text-decoration: underline;
+    text-decoration-thickness: 2.5px;
+    text-underline-offset: 18px;
+  }
 }

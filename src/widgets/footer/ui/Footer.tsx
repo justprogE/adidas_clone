@@ -21,7 +21,7 @@ export function Footer() {
           <span className="text-3xl uppercase font-neueBold tracking-[1.5px] text-center">
             join our adiclub & get 15% off
           </span>
-          <Button className="w-[220px]" intent={'secondary'}>
+          <Button className="max-w-[220px]" intent={'secondary'}>
             sign up for free
           </Button>
         </div>

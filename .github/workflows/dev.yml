@@ -1,0 +1,14 @@
+name: Lint pull requests
+on:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Get dependencies
+        run: npm ci
+      - name: Lint code
+        run: npm run lint

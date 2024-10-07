@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Colors */
+  --background-highlight: #ede734;
+  --dark-gray: #767677;
+  --gray: #eceff1;
+  --red: #e32b2b;
+  --green: #00aa55;
+  --blue: #0081c7;
+
+  /* Fonts */
+  --font-haus-bold: 'AdihausDIN_bold';
+  --font-haus-regular: 'AdihausDIN_regular';
+  --font-neue-bold: 'AdineuePRO_bold';
+  --font-hauscn: 'AdihausDIN_CN';
+
+  /* Margin */
+  --header-lg: 120px;
+}
+
+@font-face {
+  font-family: 'AdihausDIN_bold';
+  src:
+    url('./fonts/adihausdinBold/adihausdin_bold.woff2') format('woff2'),
+    url('./fonts/adihausdinBold/adihausdin_bold.woff') format('woff'),
+    url('./fonts/adihausdinBold/adihausdin_bold.ttf') format('truetype'),
+    url('./fonts/adihausdinBold/adihausdin_bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'AdihausDIN_regular';
+  src:
+    url('./fonts/adihausdinRegular/adihausdin_regular.woff2') format('woff2'),
+    url('./fonts/adihausdinRegular/adihausdin_regular.woff') format('woff'),
+    url('./fonts/adihausdinRegular/adihausdin_regular.ttf') format('truetype'),
+    url('./fonts/adihausdinRegular/adihausdin_regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'AdineuePRO_bold';
+  src:
+    url('./fonts/adineueproBold/adineueprocyr_boldweb.woff2') format('woff2'),
+    url('./fonts/adineueproBold/adineueprocyr_boldweb.woff') format('woff'),
+    url('./fonts/adineueproBold/adineueprocyr_boldweb.ttf') format('truetype'),
+    url('./fonts/adineueproBold/adineueprocyr_boldweb.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'AdihausDIN_CN';
+  src: url('./fonts/adihausdinCn/adihausdin_cn.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'AdihausDIN_regular';
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

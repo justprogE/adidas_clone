@@ -1,0 +1,20 @@
+{
+  "extends": ["next/core-web-vitals", "next/typescript", "airbnb-base"],
+  "ignorePatterns": [
+    "*.config.*",
+    "*.setup.*",
+    "*.test.*",
+    "db.*",
+    "*.apollo.*",
+    "*.queries.*"
+  ],
+  "rules": {
+    "linebreak-style": "off",
+    "import/prefer-default-export": "off",
+    "import/extensions": "off",
+    "object-curly-newline": "off",
+    "implicit-arrow-linebreak": "off",
+    "consistent-return": "off",
+    "function-paren-newline": "off"
+  }
+}

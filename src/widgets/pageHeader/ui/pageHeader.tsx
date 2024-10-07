@@ -35,7 +35,7 @@ export function PageHeader({
               {subtitle}
             </p>
           </div>
-          <Button>shop now</Button>
+          <Button className="max-w-[220px]">shop now</Button>
         </div>
       </div>
     </div>

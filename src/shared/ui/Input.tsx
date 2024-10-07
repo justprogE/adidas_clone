@@ -15,8 +15,8 @@ const Input = React.forwardRef<HTMLInputElement, IInputProps>(
         className={cn(
           'p-[15px] py-[13px] text-base w-full input border-black border-[1px]',
           {
-            'border-b-[var(--error)] border-b-2': error,
-            'border-b-[var(--valid)] border-b-2': notEmpty && !error,
+            'border-b-[var(--red)] border-b-2': error,
+            'border-b-[var(--green)] border-b-2': notEmpty && !error,
           },
           className,
         )}

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import mobileMenu from '@/shared/assets/mobileMenuIcon.svg';
 import logo from '@/shared/assets/logo.svg';
-import close from '@/shared/assets/close.svg';
+import Close from '@/shared/ui/Close';
 import { navs } from '../model/nav';
 
 function MobileMenu() {
@@ -26,7 +26,7 @@ function MobileMenu() {
               onClick={() => setOpen(false)}
               className="absolute cursor-pointer top-[20px] right-[30px]"
             >
-              <Image className="w-4" src={close} alt="" />
+              <Close />
             </div>
           </div>
           <ul className="py-[10px] px-[30px]">

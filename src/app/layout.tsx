@@ -4,6 +4,7 @@ import './globals.css';
 import Layout from '@/shared/ui/Layout';
 import { Header } from '@/widgets/header';
 import { Footer } from '@/widgets/footer';
+import AppProviders from './providers/providers';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,9 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Layout headerSlot={<Header />} footerSlot={<Footer />}>
-          {children}
-        </Layout>
+        <AppProviders>
+          <Layout headerSlot={<Header />} footerSlot={<Footer />}>
+            {children}
+          </Layout>
+        </AppProviders>
       </body>
     </html>
   );

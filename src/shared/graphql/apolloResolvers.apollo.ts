@@ -169,9 +169,10 @@ export const apolloResolvers = {
         });
       }
     },
-    deleteUser: async (_: any, args: { where: { id: number } }) => {
+    deleteUser: async (_: any) => {
       try {
         const user = await checkToken();
+        cookies().delete('refreshToken');
         return prisma.user.delete({
           where: {
             id: Number(user.id),

@@ -1,12 +1,12 @@
 'use client'; // eslint-disable-line
 import Image from 'next/image';
 import React from 'react';
-import Button from '@/shared/ui/Button';
 import { DetailsEdit } from '@/features/detailsEdit';
 import { userQueries } from '@/entities/user/api';
 import { EmailEdit } from '@/features/emailEdit';
 import { PasswordEdit } from '@/features/passwordEdit';
 import { LogoutButton } from '@/features/logoutButton';
+import { DeleteAccountButton } from '@/features/deleteAccountButton';
 import adiclubLevel from '../../shared/assets/adiclub_header_level_1.svg';
 
 const Account = () => {
@@ -83,7 +83,7 @@ const Account = () => {
             credentials.
           </p>
           <LogoutButton />
-          <Button intent={'border'}>delete account</Button>
+          <DeleteAccountButton />
         </div>
       </div>
     </div>

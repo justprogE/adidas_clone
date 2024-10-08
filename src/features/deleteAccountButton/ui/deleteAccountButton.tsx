@@ -4,10 +4,10 @@ import React from 'react';
 import { useApolloClient } from '@apollo/client';
 import navigate from '@/shared/lib/redirect';
 
-export function LogoutButton() {
+export function DeleteAccountButton() {
   const client = useApolloClient();
-  const [mutation] = userQueries.logout();
-  async function logOut() {
+  const [mutation] = userQueries.delete();
+  async function deleteAccount() {
     try {
       await client.clearStore();
       await mutation();
@@ -18,8 +18,12 @@ export function LogoutButton() {
     }
   }
   return (
-    <Button onClick={() => logOut()} className="my-[10px]" intent={'border'}>
-      log me out
+    <Button
+      onClick={() => deleteAccount()}
+      className="my-[10px]"
+      intent={'border'}
+    >
+      delete account
     </Button>
   );
 }

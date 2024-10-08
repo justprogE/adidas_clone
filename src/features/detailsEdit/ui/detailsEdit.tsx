@@ -18,7 +18,7 @@ import {
 import close from '@/shared/assets/close.svg';
 import { DetailsSchema, DetailsSchemaType } from '../model/details-schema';
 
-export function DetailsForm() {
+export function DetailsEdit() {
   const [open, setOpen] = useState(false);
   const [mutation] = userQueries.updateDetails();
   const { data } = userQueries.get();

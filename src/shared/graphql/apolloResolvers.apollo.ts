@@ -185,6 +185,19 @@ export const apolloResolvers = {
         });
       }
     },
+    logoutUser: async (_: any, args: { where: { id: number } }) => {
+      try {
+        await checkToken();
+        cookies().delete('refreshToken');
+        return { message: 'Logout successfully' };
+      } catch {
+        throw new GraphQLError('User is not authenticated', {
+          extensions: {
+            http: { status: 401 },
+          },
+        });
+      }
+    },
     updateUserDetails: async (
       _: any,
       args: { where: { firstName: string; lastName: string; gender: string } },
@@ -218,11 +231,27 @@ export const apolloResolvers = {
     ) => {
       try {
         const user = await checkToken();
+        const userData = await prisma.user.findUnique({
+          where: {
+            id: Number(user?.id),
+          },
+        });
+        const checkPassword = await bcrypt.compare(
+          args.where.oldPassword,
+          userData?.password!,
+        );
+        if (!checkPassword) {
+          throw new GraphQLError('Wrong password', {
+            extensions: {
+              http: { status: 400 },
+            },
+          });
+        }
+
         const newPasswordHash = await bcrypt.hash(args.where.newPassword, 10);
 
         return prisma.user.update({
           where: {
-            //@ts-ignore
             id: Number(user.id),
           },
           data: {

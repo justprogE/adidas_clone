@@ -15,18 +15,19 @@ import {
   FormMessage,
 } from '@/shared/ui/Form';
 import Close from '@/shared/ui/Close';
+import Loader from '@/shared/ui/Loader';
 import { DetailsSchema, DetailsSchemaType } from '../model/details-schema';
 
 export function DetailsEdit() {
   const [open, setOpen] = useState(false);
-  const [mutation] = userQueries.updateDetails();
+  const [mutation, { loading }] = userQueries.updateDetails();
   const { data } = userQueries.get();
   const form = useForm<DetailsSchemaType>({
     mode: 'onChange',
     resolver: zodResolver(DetailsSchema),
     defaultValues: {
-      firstName: data?.user?.firstName ?? '',
-      lastName: data?.user?.lastName ?? '',
+      firstName: data?.user?.firstName,
+      lastName: data?.user?.lastName,
       month: '',
       day: '',
       year: '',
@@ -149,7 +150,7 @@ export function DetailsEdit() {
                     intent={'secondary'}
                     disabled={!form.formState.isValid}
                   >
-                    update details
+                    {loading ? <Loader /> : 'update details'}
                   </Button>
                 </form>
               </Form>

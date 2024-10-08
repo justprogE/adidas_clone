@@ -5,6 +5,8 @@ import Button from '@/shared/ui/Button';
 import { DetailsEdit } from '@/features/detailsEdit';
 import { userQueries } from '@/entities/user/api';
 import { EmailEdit } from '@/features/emailEdit';
+import { PasswordEdit } from '@/features/passwordEdit';
+import { LogoutButton } from '@/features/logoutButton';
 import adiclubLevel from '../../shared/assets/adiclub_header_level_1.svg';
 
 const Account = () => {
@@ -69,7 +71,9 @@ const Account = () => {
 
           <h5 className="uppercase font-neueBold text-lg mt-10">password</h5>
           <p className="uppercase mt-[15px]">************</p>
-          <div className="mt-[10px]"></div>
+          <div className="mt-[10px]">
+            <PasswordEdit />
+          </div>
           <h5 className="uppercase font-neueBold text-lg mt-10 ">
             Log out from all web browsers
           </h5>
@@ -78,9 +82,7 @@ const Account = () => {
             the adidas website. To log in again, you&apos;ll have to enter your
             credentials.
           </p>
-          <Button className="my-[10px]" intent={'border'}>
-            log me out
-          </Button>
+          <LogoutButton />
           <Button intent={'border'}>delete account</Button>
         </div>
       </div>

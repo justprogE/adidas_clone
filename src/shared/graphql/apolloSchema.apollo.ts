@@ -26,6 +26,10 @@ export const apolloSchema = gql`
     quantity: Int
   }
 
+  type Message {
+    message: String
+  }
+
   type Query {
     getUser: User
   }
@@ -33,6 +37,7 @@ export const apolloSchema = gql`
   type Mutation {
     createUser(where: CreateUserType): Auth!
     deleteUser(where: UserIdType): User!
+    logoutUser: Message
 
     generateTokens: Token
 

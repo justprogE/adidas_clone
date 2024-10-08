@@ -16,39 +16,39 @@ import {
 } from '@/shared/ui/Form';
 import Button from '@/shared/ui/Button';
 import close from '@/shared/assets/close.svg';
-import Loader from '@/shared/ui/Loader';
 import {
-  DetailsEmailSchema,
-  DetailsEmailSchemaType,
-} from '../model/email-schema';
+  DetailsPasswordSchema,
+  DetailsPasswordSchemaType,
+} from '../model/password-schema';
 
-export function EmailEdit() {
+export function PasswordEdit() {
   const [open, setOpen] = useState(false);
-  const { data } = userQueries.get();
-  const [mutation, { loading }] = userQueries.updateEmail();
-  const form = useForm<DetailsEmailSchemaType>({
+  const [mutation] = userQueries.updatePassword();
+  const form = useForm<DetailsPasswordSchemaType>({
     mode: 'onChange',
-    resolver: zodResolver(DetailsEmailSchema),
+    resolver: zodResolver(DetailsPasswordSchema),
     defaultValues: {
-      email: data?.user?.email,
+      oldPassword: '',
+      newPassword: '',
     },
   });
 
-  const changeEmail = async (email: string) => {
+  async function changePassword(oldPassword: string, newPassword: string) {
     try {
       await mutation({
         variables: {
           where: {
-            email,
+            oldPassword,
+            newPassword,
           },
         },
       });
+      form.reset();
       return setOpen(false);
-    } catch (e) {
-      console.log('email Edit error: ', e);
-      return form.setError('email', { message: 'This email is taken' });
+    } catch {
+      return form.setError('oldPassword', { message: 'Wrong password' });
     }
-  };
+  }
   return (
     <div>
       <div onClick={() => setOpen(true)}>
@@ -65,24 +65,40 @@ export function EmailEdit() {
               <Image className="w-[25px] h-[25px]" src={close} alt="" />
             </div>
             <h4 className="text-[30px] uppercase font-neueBold">
-              Edit your email
+              Edit your password
             </h4>
             <div className="pr-5">
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit((changedData) =>
-                    changeEmail(changedData.email),
+                    changePassword(
+                      changedData.oldPassword,
+                      changedData.newPassword,
+                    ),
                   )}
                 >
                   <FormField
                     control={form.control}
-                    name="email"
+                    name="oldPassword"
                     render={({ field }) => (
                       <FormItem className="mt-5">
                         <FormControl>
                           <Input {...field} />
                         </FormControl>
-                        <FormLabel>Email *</FormLabel>
+                        <FormLabel>Old Password *</FormLabel>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="newPassword"
+                    render={({ field }) => (
+                      <FormItem className="mt-10">
+                        <FormControl>
+                          <Input {...field} />
+                        </FormControl>
+                        <FormLabel>New Password *</FormLabel>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -93,7 +109,7 @@ export function EmailEdit() {
                       intent={'secondary'}
                       disabled={!form.formState.isValid}
                     >
-                      {loading ? <Loader /> : 'update details'}
+                      save changes
                     </Button>
                   </div>
                 </form>

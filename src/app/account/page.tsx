@@ -4,6 +4,7 @@ import React from 'react';
 import Button from '@/shared/ui/Button';
 import { DetailsEdit } from '@/features/detailsEdit';
 import { userQueries } from '@/entities/user/api';
+import { EmailEdit } from '@/features/emailEdit';
 import adiclubLevel from '../../shared/assets/adiclub_header_level_1.svg';
 
 const Account = () => {
@@ -62,7 +63,9 @@ const Account = () => {
           <h5 className="uppercase font-neueBold text-lg">email</h5>
           <p className="uppercase mt-[15px]">{data?.user?.email}</p>
 
-          <div className="mt-[10px]"></div>
+          <div className="mt-[10px]">
+            <EmailEdit />
+          </div>
 
           <h5 className="uppercase font-neueBold text-lg mt-10">password</h5>
           <p className="uppercase mt-[15px]">************</p>

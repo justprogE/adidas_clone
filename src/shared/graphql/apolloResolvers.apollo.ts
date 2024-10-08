@@ -244,6 +244,7 @@ export const apolloResolvers = {
     ) => {
       try {
         const user = await checkToken();
+        console.log('User email: ', user);
         return prisma.user.update({
           where: {
             //@ts-ignore

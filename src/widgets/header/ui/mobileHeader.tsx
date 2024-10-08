@@ -1,15 +1,17 @@
 'use client'; // eslint-disable-line
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
 import Image from 'next/image';
 import heart from '@/shared/assets/heart.svg';
 import logo from '@/shared/assets/logo.svg';
 import cart from '@/shared/assets/bag.svg';
 import search from '@/shared/assets/search.svg';
 import profile from '@/shared/assets/user.svg';
+import { AuthContext } from '@/features/session';
 import MobileMenu from './mobileMenu';
 
 function MobileHeader() {
+  const { setOpenAuth } = useContext(AuthContext);
   return (
     <div className="hidden md:grid md:grid-cols-[2fr_1fr_2fr] py-[5px] h-[60px]">
       <div className="flex justify-start items-center gap-3">
@@ -28,7 +30,10 @@ function MobileHeader() {
         <Image className="w-[50px]" src={logo} alt="logo" />
       </Link>
       <div className="flex justify-end items-center gap-3">
-        <div className="relative pl-2 cursor-pointer">
+        <div
+          onClick={() => setOpenAuth(true)}
+          className="relative pl-2 cursor-pointer"
+        >
           {!localStorage.getItem('access_token') && (
             <div className="w-[22px] h-[22px] flex items-center font-hausBold justify-center text-[12px] font-bold rounded-[50%] bg-[#ffd200] absolute top-[-10px] left-[21px]">
               1

@@ -14,7 +14,7 @@ export function SideBar() {
   const { data } = userQueries.get();
   const { setOpenAuth } = useContext(AuthContext);
   return (
-    <div className="w-[390px] ml-auto h-screen bg-white overflow-y-scroll pb-5 sm:w-screen">
+    <div className="w-[390px] ml-auto h-screen bg-white overflow-y-scroll scroll_width pb-5 sm:w-screen">
       <div className="sticky top-0 z-10 px-[30px] bg-[url(../shared/assets/back_points.png)] bg-repeat bg-cover">
         <div
           onClick={() => setOpenAuth(false)}

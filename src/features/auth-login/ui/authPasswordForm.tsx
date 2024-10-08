@@ -11,6 +11,7 @@ import {
   FormMessage,
 } from '@/shared/ui/Form';
 import { Input } from '@/shared/ui/Input';
+import Loader from '@/shared/ui/Loader';
 import Button from '@/shared/ui/Button';
 import {
   PasswordSchema,
@@ -23,7 +24,7 @@ export function AuthPasswordForm({
 }: {
   data: { email: string; password: string };
 }) {
-  const [mutation] = userQueries.create();
+  const [mutation, { loading }] = userQueries.create();
   const form = useForm<PasswordSchemaType>({
     mode: 'onChange',
     resolver: zodResolver(PasswordSchema),
@@ -51,8 +52,10 @@ export function AuthPasswordForm({
         localStorage.setItem('access_token', user?.data?.createUser?.token);
       }
       return setOpenAuth(false);
-    } catch (e) {
-      console.log(e);
+    } catch {
+      return form.setError('password', {
+        message: 'Incorrect email/password - please check and retry',
+      });
     }
   }
   return (
@@ -79,7 +82,7 @@ export function AuthPasswordForm({
           className="max-w-[150px] mt-5 md:w-full md:max-w-full"
           disabled={!form?.formState?.isValid}
         >
-          continue
+          {loading ? <Loader /> : 'continue'}
         </Button>
       </form>
     </Form>

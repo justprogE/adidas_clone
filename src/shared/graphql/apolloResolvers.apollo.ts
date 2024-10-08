@@ -54,12 +54,20 @@ export const apolloResolvers = {
         );
         console.log('check: ', checkPassword);
         if (!checkPassword) {
-          return { message: 'Wrong password.' };
+          throw new GraphQLError(
+            'Incorrect email/password - please check and retry',
+            {
+              extensions: {
+                http: { status: 400 },
+              },
+            },
+          );
         }
+        console.log('continue');
         const accessToken = jwt.sign(
           { id: loginUser.id, email: loginUser.email },
           ACCESS_KEY,
-          { expiresIn: '2m' },
+          { expiresIn: '30m' },
         );
         const refreshToken = jwt.sign(
           {
@@ -99,7 +107,7 @@ export const apolloResolvers = {
       const accessToken = jwt.sign(
         { id: user.id, email: user.email },
         ACCESS_KEY,
-        { expiresIn: '2m' },
+        { expiresIn: '30m' },
       );
       const refreshToken = jwt.sign(
         { id: user.id, email: user.email, password: user.password },
@@ -137,7 +145,7 @@ export const apolloResolvers = {
         const accessToken = jwt.sign(
           { id: user.id, email: user.email },
           ACCESS_KEY,
-          { expiresIn: '2m' },
+          { expiresIn: '30m' },
         );
         const refreshToken = jwt.sign(
           { id: user.id, email: user.email, password: user.password },

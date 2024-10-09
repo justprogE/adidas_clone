@@ -169,14 +169,28 @@ export const apolloResolvers = {
         });
       }
     },
-    deleteUser: async (_: any, args: { where: { id: number } }) => {
+    deleteUser: async (_: any) => {
       try {
         const user = await checkToken();
+        cookies().delete('refreshToken');
         return prisma.user.delete({
           where: {
             id: Number(user.id),
           },
         });
+      } catch {
+        throw new GraphQLError('User is not authenticated', {
+          extensions: {
+            http: { status: 401 },
+          },
+        });
+      }
+    },
+    logoutUser: async (_: any, args: { where: { id: number } }) => {
+      try {
+        await checkToken();
+        cookies().delete('refreshToken');
+        return { message: 'Logout successfully' };
       } catch {
         throw new GraphQLError('User is not authenticated', {
           extensions: {
@@ -218,11 +232,27 @@ export const apolloResolvers = {
     ) => {
       try {
         const user = await checkToken();
+        const userData = await prisma.user.findUnique({
+          where: {
+            id: Number(user?.id),
+          },
+        });
+        const checkPassword = await bcrypt.compare(
+          args.where.oldPassword,
+          userData?.password!,
+        );
+        if (!checkPassword) {
+          throw new GraphQLError('Wrong password', {
+            extensions: {
+              http: { status: 400 },
+            },
+          });
+        }
+
         const newPasswordHash = await bcrypt.hash(args.where.newPassword, 10);
 
         return prisma.user.update({
           where: {
-            //@ts-ignore
             id: Number(user.id),
           },
           data: {
@@ -244,6 +274,7 @@ export const apolloResolvers = {
     ) => {
       try {
         const user = await checkToken();
+        console.log('User email: ', user);
         return prisma.user.update({
           where: {
             //@ts-ignore

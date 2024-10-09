@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { userQueries } from '@/entities/user/api';
+import { sessionQueries } from '@/entities/session/api';
 import {
   Form,
   FormField,
@@ -24,7 +24,7 @@ export function AuthPasswordForm({
 }: {
   data: { email: string; password: string };
 }) {
-  const [mutation, { loading }] = userQueries.create();
+  const [mutation, { loading }] = sessionQueries.create();
   const form = useForm<PasswordSchemaType>({
     mode: 'onChange',
     resolver: zodResolver(PasswordSchema),

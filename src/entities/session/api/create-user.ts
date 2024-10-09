@@ -1,7 +1,7 @@
 import { USER_ENDPOINT } from '@/shared/api';
 import { useMutation } from '@apollo/client';
 import { SING_UP_USER } from '../model/create-user-schema';
-import { IUser } from '../model/type';
+import { IUser } from '../../user/@x/type';
 
 export function createUser() {
   // eslint-disable-next-line

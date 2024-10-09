@@ -16,12 +16,13 @@ import {
 } from '@/shared/ui/Form';
 import Close from '@/shared/ui/Close';
 import Loader from '@/shared/ui/Loader';
+import { sessionQueries } from '@/entities/session/api';
 import { DetailsSchema, DetailsSchemaType } from '../model/details-schema';
 
 export function DetailsEdit() {
   const [open, setOpen] = useState(false);
   const [mutation, { loading }] = userQueries.updateDetails();
-  const { data } = userQueries.get();
+  const { data } = sessionQueries.get();
   const form = useForm<DetailsSchemaType>({
     mode: 'onChange',
     resolver: zodResolver(DetailsSchema),

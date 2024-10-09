@@ -2,15 +2,15 @@
 import Image from 'next/image';
 import React from 'react';
 import { DetailsEdit } from '@/features/detailsEdit';
-import { userQueries } from '@/entities/user/api';
 import { EmailEdit } from '@/features/emailEdit';
 import { PasswordEdit } from '@/features/passwordEdit';
 import { LogoutButton } from '@/features/logoutButton';
 import { DeleteAccountButton } from '@/features/deleteAccountButton';
+import { sessionQueries } from '@/entities/session/api';
 import adiclubLevel from '../../shared/assets/adiclub_header_level_1.svg';
 
 const Account = () => {
-  const { data } = userQueries.get();
+  const { data } = sessionQueries.get();
   return (
     <div className="bg-[#f7f7f7]">
       <div className="bg-white pt-10">

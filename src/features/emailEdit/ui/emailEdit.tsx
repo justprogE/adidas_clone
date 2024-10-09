@@ -17,6 +17,7 @@ import {
 import Button from '@/shared/ui/Button';
 import close from '@/shared/assets/close.svg';
 import Loader from '@/shared/ui/Loader';
+import { sessionQueries } from '@/entities/session/api';
 import {
   DetailsEmailSchema,
   DetailsEmailSchemaType,
@@ -24,7 +25,7 @@ import {
 
 export function EmailEdit() {
   const [open, setOpen] = useState(false);
-  const { data } = userQueries.get();
+  const { data } = sessionQueries.get();
   const [mutation, { loading }] = userQueries.updateEmail();
   const form = useForm<DetailsEmailSchemaType>({
     mode: 'onChange',

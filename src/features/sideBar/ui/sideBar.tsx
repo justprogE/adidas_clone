@@ -2,16 +2,16 @@
 import React, { useContext } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { userQueries } from '@/entities/user/api';
 import close from '@/shared/assets/close.svg';
 import coin from '@/shared/assets/coin.svg';
 import arrow from '@/shared/assets/arrow.svg';
 import adiClub from '@/shared/assets/adiclub_level_1.svg';
+import { sessionQueries } from '@/entities/session/api';
 import { Tabs } from './tabs';
 import { AuthContext } from '../../session/@x/context';
 
 export function SideBar() {
-  const { data } = userQueries.get();
+  const { data } = sessionQueries.get();
   const { setOpenAuth } = useContext(AuthContext);
   return (
     <div className="w-[390px] ml-auto h-screen bg-white overflow-y-scroll scroll_width pb-5 sm:w-screen">

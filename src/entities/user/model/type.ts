@@ -10,7 +10,7 @@ export interface IUser {
   cart: {
     productId: string;
     size: string;
-    quantity: string;
+    quantity: number;
   }[];
   favorites: string[];
 }

@@ -6,6 +6,7 @@ import profile from '@/shared/assets/user.svg';
 import heart from '@/shared/assets/heart.svg';
 import cart from '@/shared/assets/bag.svg';
 import { AuthContext } from '@/features/session';
+import navigate from '@/shared/lib/redirect';
 
 export function Interaction() {
   const { setOpenAuth } = useContext(AuthContext);
@@ -24,8 +25,18 @@ export function Interaction() {
           )}
           <Image className="max-w-7 h-[30px]" src={profile} alt="" />
         </div>
-        <Image className="w-6 h-[26.6px]" src={heart} alt="" />
-        <Image className="w-6 h-[26.6px]" src={cart} alt="" />
+        <Image
+          onClick={() => navigate('favorites')}
+          className="w-6 h-[26.6px] cursor-pointer"
+          src={heart}
+          alt=""
+        />
+        <Image
+          onClick={() => navigate('cart')}
+          className="w-6 h-[26.6px] cursor-pointer"
+          src={cart}
+          alt=""
+        />
       </div>
     </div>
   );

@@ -38,12 +38,17 @@ export function AuthPasswordForm({
   // eslint-disable-next-line
   async function auth(password: string) {
     try {
+      let userCart = [];
+      if (localStorage.getItem('basketData')) {
+        userCart = JSON.parse(localStorage.getItem('basketData')!);
+        localStorage.removeItem('basketData');
+      }
       const user = await mutation({
         variables: {
           where: {
             email: data?.email,
             password,
-            cart: [],
+            cart: [...userCart],
             points: 50,
           },
         },

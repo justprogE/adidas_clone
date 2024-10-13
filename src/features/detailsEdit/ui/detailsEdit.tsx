@@ -59,14 +59,14 @@ export function DetailsEdit() {
       </div>
       {open && (
         <Modal setOpen={setOpen}>
-          <div className="w-[853px] max-h-[92vh] pt-[10px] pb-10 px-[35px] bg-white relative md:w-screen m-auto">
+          <div className="w-[853px] pt-[10px] pb-10 px-[35px] bg-white relative md:w-screen md:self-end md:m-0 m-auto">
             <div
               onClick={() => setOpen(false)}
-              className="md:right-[25px] w-[50px] h-[50px] absolute top-[-25px] right-[-25px] border-black border-[1px] bg-white flex items-center justify-center cursor-pointer"
+              className="z-10 md:right-[25px] w-[50px] h-[50px] absolute top-[-25px] right-[-25px] border-black border-[1px] bg-white flex items-center justify-center cursor-pointer"
             >
               <Close />
             </div>
-            <div className="pb-[20px] pr-5">
+            <div className="pb-[20px] pr-5 max-h-[75vh] overflow-y-scroll scroll_width">
               <h4 className="text-[30px] uppercase font-neueBold">
                 Edit your details
               </h4>

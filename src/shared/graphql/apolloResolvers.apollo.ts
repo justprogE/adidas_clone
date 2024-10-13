@@ -292,5 +292,30 @@ export const apolloResolvers = {
         });
       }
     },
+    updateUserCart: async (
+      _: any,
+      args: { where: { cart: any[] } },
+      ctx: any,
+    ) => {
+      try {
+        console.log('cart: ', args.where);
+        const user = await checkToken();
+        return prisma.user.update({
+          where: {
+            //@ts-ignore
+            id: Number(user?.id),
+          },
+          data: {
+            cart: args.where.cart,
+          },
+        });
+      } catch (e) {
+        throw new GraphQLError('User is not authenticated', {
+          extensions: {
+            http: { status: 401 },
+          },
+        });
+      }
+    },
   },
 };

@@ -1,14 +1,10 @@
 'use client'; // eslint-disable-line
 import Image from 'next/image';
-import Sizes from '@/shared/ui/Sizes';
-import Button from '@/shared/ui/Button';
-import favorite from '@/shared/assets/heart.svg';
 import { productsQueries } from '@/entities/product/api';
-import { clothesSizes, shoesSizes } from '../model/const';
+import { Interaction } from './interaction';
 
 export const Product = ({ id }: { id: string }) => {
   const { data } = productsQueries.product(id);
-
   return (
     <div className="flex md:flex-col relative mx-auto md:mx-0">
       <div className="max-w-[1200px] md:hidden self-start flex-auto grid grid-cols-[50%_50%] gap-x-[1px] gap-y-[1px]">
@@ -56,19 +52,12 @@ export const Product = ({ id }: { id: string }) => {
           </p>
           <p className="mt-10 text-base">{data?.product?.[0]?.color}</p>
         </div>
-        <Sizes
-          sizes={
-            /shoes/gi.test(data?.product?.[0]?.category ?? '')
-              ? shoesSizes
-              : clothesSizes
-          }
+        <Interaction
+          category={data?.product?.[0]?.category ?? ''}
+          // eslint-disable-next-line
+          // @ts-ignore
+          product={data?.product?.[0]}
         />
-        <div className="flex gap-2 mt-10">
-          <Button intent={'secondary'}>add to bag</Button>
-          <div className="p-[15px] border-black border-[1px]">
-            <Image className="min-w-5 w-5" src={favorite} alt="" />
-          </div>
-        </div>
         <p className="mt-5 text-sm text-[#17120f]">
           4 interest-free payments of $27.50 with Klarna. Learn More
         </p>

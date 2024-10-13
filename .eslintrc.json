@@ -15,6 +15,7 @@
     "object-curly-newline": "off",
     "implicit-arrow-linebreak": "off",
     "consistent-return": "off",
-    "function-paren-newline": "off"
+    "function-paren-newline": "off",
+    "no-return-await": "off"
   }
 }

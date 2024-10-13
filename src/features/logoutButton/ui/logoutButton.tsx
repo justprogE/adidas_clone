@@ -7,8 +7,10 @@ import { sessionQueries } from '@/entities/session/api';
 export function LogoutButton() {
   const client = useApolloClient();
   const [mutation] = sessionQueries.logout();
+  const { data } = sessionQueries.get();
   async function logOut() {
     try {
+      localStorage.setItem('basketData', JSON.stringify(data?.user?.cart));
       await client.clearStore();
       await mutation();
       localStorage.removeItem('access_token');

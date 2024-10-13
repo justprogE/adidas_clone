@@ -4,14 +4,16 @@ import React, { useContext } from 'react';
 import Image from 'next/image';
 import heart from '@/shared/assets/heart.svg';
 import logo from '@/shared/assets/logo.svg';
-import cart from '@/shared/assets/bag.svg';
+import cartIcon from '@/shared/assets/bag.svg';
 import search from '@/shared/assets/search.svg';
 import profile from '@/shared/assets/user.svg';
 import { AuthContext } from '@/features/session';
+import { CartContext } from '@/features/cart';
 import MobileMenu from './mobileMenu';
 
 function MobileHeader() {
   const { setOpenAuth } = useContext(AuthContext);
+  const { cart } = useContext(CartContext);
   return (
     <div className="hidden md:grid md:grid-cols-[2fr_1fr_2fr] py-[5px] h-[60px]">
       <div className="flex justify-start items-center gap-3">
@@ -29,7 +31,7 @@ function MobileHeader() {
       <Link href={'/'} className="flex justify-center items-center">
         <Image className="w-[50px]" src={logo} alt="logo" />
       </Link>
-      <div className="flex justify-end items-center gap-3">
+      <div className="flex justify-between items-center w-[134px] ml-auto">
         <div
           onClick={() => setOpenAuth(true)}
           className="relative pl-2 cursor-pointer"
@@ -45,10 +47,12 @@ function MobileHeader() {
           <Image className="w-6 h-[26.6px]" src={search} alt="" />
         </div>
         <Link href="/cart" className="relative pl-2">
-          <div className="w-[22px] h-[22px] flex items-center justify-center text-[12px] font-bold text-white rounded-[50%] bg-[#0071ae] absolute top-[-15px] left-4">
-            1
-          </div>
-          <Image className="w-6 h-[26.6px]" src={cart} alt="" />
+          {cart?.length > 0 && (
+            <div className="w-[22px] h-[22px] flex items-center justify-center text-[12px] font-bold text-white rounded-[50%] bg-[#0071ae] absolute top-[-15px] left-4">
+              {cart?.length > 10 ? '10+' : cart?.length}
+            </div>
+          )}
+          <Image className="w-6 h-[26.6px]" src={cartIcon} alt="" />
         </Link>
       </div>
     </div>

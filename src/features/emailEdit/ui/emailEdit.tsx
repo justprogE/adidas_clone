@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { Input } from '@/shared/ui/Input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -15,9 +14,9 @@ import {
   FormMessage,
 } from '@/shared/ui/Form';
 import Button from '@/shared/ui/Button';
-import close from '@/shared/assets/close.svg';
 import Loader from '@/shared/ui/Loader';
 import { sessionQueries } from '@/entities/session/api';
+import Close from '@/shared/ui/Close';
 import {
   DetailsEmailSchema,
   DetailsEmailSchemaType,
@@ -56,57 +55,59 @@ export function EmailEdit() {
         <TextAction>edit</TextAction>
       </div>
       {open && (
-        <Modal>
+        <Modal setOpen={setOpen}>
           {' '}
-          <div className="w-[853px] max-h-[92vh] pt-[10px] m-auto pb-10 px-[35px] bg-white relative md:w-screen">
+          <div className="w-[853px] pt-[10px] m-auto pb-10 px-[35px] bg-white relative md:w-screen md:m-0 md:self-end">
             <div
               onClick={() => setOpen(false)}
-              className="md:right-[25px] w-[50px] h-[50px] absolute top-[-25px] right-[-25px] border-black border-[1px] bg-white flex items-center justify-center cursor-pointer"
+              className="z-10 md:right-[25px] w-[50px] h-[50px] absolute top-[-25px] right-[-25px] border-black border-[1px] bg-white flex items-center justify-center cursor-pointer"
             >
-              <Image className="w-[25px] h-[25px]" src={close} alt="" />
+              <Close />
             </div>
-            <h4 className="text-[30px] uppercase font-neueBold">
-              Edit your email
-            </h4>
-            <div className="pr-5">
-              <Form {...form}>
-                <form
-                  onSubmit={form.handleSubmit((changedData) =>
-                    changeEmail(changedData.email),
-                  )}
-                >
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem className="mt-5">
-                        <FormControl>
-                          <Input {...field} />
-                        </FormControl>
-                        <FormLabel>Email *</FormLabel>
-                        <FormMessage />
-                      </FormItem>
+            <div className="max-h-[80vh] overflow-y-scroll scroll_width">
+              <h4 className="text-[30px] uppercase font-neueBold">
+                Edit your email
+              </h4>
+              <div className="pr-5">
+                <Form {...form}>
+                  <form
+                    onSubmit={form.handleSubmit((changedData) =>
+                      changeEmail(changedData.email),
                     )}
-                  />
-                  <div className="w-[375px]">
-                    <Button
-                      className="mt-[34px]"
-                      intent={'secondary'}
-                      disabled={!form.formState.isValid}
-                    >
-                      {loading ? <Loader /> : 'update details'}
-                    </Button>
-                  </div>
-                </form>
-              </Form>
-              <div className="w-[375px]">
-                <Button
-                  onClick={() => setOpen(false)}
-                  className="mt-[18px] w-[375px]"
-                  intent={'border'}
-                >
-                  cancel
-                </Button>
+                  >
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem className="mt-5">
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormLabel>Email *</FormLabel>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <div className="max-w-[375px]">
+                      <Button
+                        className="mt-[34px]"
+                        intent={'secondary'}
+                        disabled={!form.formState.isValid}
+                      >
+                        {loading ? <Loader /> : 'update details'}
+                      </Button>
+                    </div>
+                  </form>
+                </Form>
+                <div className="max-w-[375px]">
+                  <Button
+                    onClick={() => setOpen(false)}
+                    className="mt-[18px]"
+                    intent={'border'}
+                  >
+                    cancel
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

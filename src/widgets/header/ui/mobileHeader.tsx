@@ -31,7 +31,7 @@ function MobileHeader() {
       <Link href={'/'} className="flex justify-center items-center">
         <Image className="w-[50px]" src={logo} alt="logo" />
       </Link>
-      <div className="flex justify-end items-center gap-3">
+      <div className="flex justify-between items-center w-[134px] ml-auto">
         <div
           onClick={() => setOpenAuth(true)}
           className="relative pl-2 cursor-pointer"

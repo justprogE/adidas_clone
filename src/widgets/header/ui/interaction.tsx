@@ -15,7 +15,7 @@ export function Interaction() {
   return (
     <div className="flex items-center h-12">
       <Search />
-      <div className="w-[144px] flex items-center justify-between pl-[10px]">
+      <div className="w-[134px] flex items-center justify-between pl-[10px]">
         <div
           onClick={() => setOpenAuth(true)}
           className="relative cursor-pointer"

@@ -1,6 +1,5 @@
-/* import { useGetCart } from './get-cart';
+import { useUpdateCart } from './add-item-cart';
 
 export const cartQueries = {
-  get: () => useGetCart(),
+  update: () => useUpdateCart(),
 };
- */

@@ -1,12 +1,19 @@
 'use client'; // eslint-disable-line
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import { cn } from '../lib/cn';
 
 type TEvent = React.MouseEvent<HTMLDivElement>;
 type TargetWithId = { id: string } & EventTarget;
 
-function Sizes({ sizes }: { sizes: string[] }) {
-  const [active, setActive] = useState('');
+function Sizes({
+  sizes,
+  active,
+  setActive,
+}: {
+  sizes: string[];
+  active: string;
+  setActive: Dispatch<SetStateAction<string>>;
+}) {
   useEffect(() => {
     setActive(sizes[0]);
   }, [sizes]);

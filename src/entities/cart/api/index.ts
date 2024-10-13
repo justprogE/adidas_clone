@@ -1,2 +1,1 @@
-/* export { cartQueries } from './cart.queries';
- */
+export { cartQueries } from './cart.queries';

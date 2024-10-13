@@ -1,9 +1,9 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
-import { TItemCart } from './type';
+import { IProductCart } from '@/entities/cart/model/type';
 
 type CartContextType = {
-  cart: TItemCart[];
-  setCart: Dispatch<SetStateAction<TItemCart[]>>;
+  cart: IProductCart[];
+  setCart: Dispatch<SetStateAction<IProductCart[]>>;
 };
 
 export const CartContext = createContext({} as CartContextType);

@@ -1,27 +1,15 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { cn } from '@/shared/lib/cn';
 import { IProduct } from '../model/types';
 import { convertPrice } from '../lib/price';
 
-export function ProductCard({
-  product,
-  favorites,
-}: {
-  product: IProduct;
-  favorites?: boolean;
-}) {
+export function ProductCard({ product }: { product: IProduct }) {
   return (
     <Link
       href={`${product.id}`}
       className="w-full pb-6 hover:border-black hover:border-[1px]"
     >
-      <div
-        className={cn('w-full relative', {
-          'hover:favorite_hover': favorites,
-          'hover:item_hover': !favorites,
-        })}
-      >
+      <div className="w-full relative hover:item_hover">
         <Image
           loader={({ src }) => src}
           width={0}
@@ -80,14 +68,12 @@ export function ProductCard({
           </div>
         </div>
         <p className="text-sm mt-1">{product?.title}</p>
-        {!favorites && (
-          <>
-            <p className="text-sm text-[var(--dark-gray)]">{product?.style}</p>
-            <span className="text-sm text-[var(--dark-gray)]">
-              {product?.color}
-            </span>
-          </>
-        )}
+        <>
+          <p className="text-sm text-[var(--dark-gray)]">{product?.style}</p>
+          <span className="text-sm text-[var(--dark-gray)]">
+            {product?.color}
+          </span>
+        </>
       </div>
     </Link>
   );

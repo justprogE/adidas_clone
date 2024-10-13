@@ -66,7 +66,7 @@ export function DetailsEdit() {
             >
               <Close />
             </div>
-            <div className="pb-[20px] pr-5 max-h-[75vh] overflow-y-scroll scroll_width">
+            <div className="pb-[20px] pr-5 h-[75vh] overflow-y-scroll scroll_width">
               <h4 className="text-[30px] uppercase font-neueBold">
                 Edit your details
               </h4>

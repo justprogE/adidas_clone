@@ -64,7 +64,7 @@ export function EmailEdit() {
             >
               <Close />
             </div>
-            <div className="max-h-[80vh] overflow-y-scroll scroll_width">
+            <div className="h-[80vh] overflow-y-scroll scroll_width">
               <h4 className="text-[30px] uppercase font-neueBold">
                 Edit your email
               </h4>
